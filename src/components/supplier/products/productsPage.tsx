@@ -2,7 +2,6 @@
 
 import { useState } from "react"
 import {
-  Search,
   Grid3X3,
   List,
   Upload,

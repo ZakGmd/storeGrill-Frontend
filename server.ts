@@ -102,9 +102,10 @@ async function createServer() {
  
  
  
-  app.listen(5173, () => {
-    console.log('http://localhost:5173')
-  })
+  const PORT = process.env.PORT || 5173
+    app.listen(PORT, () => {
+      console.log(`http://localhost:${PORT}`)
+    })
 }
 
 createServer()

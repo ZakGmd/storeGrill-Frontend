@@ -1,4 +1,4 @@
-import { Store, HandCoins, Package, Handshake, Eye, MoreHorizontal, DollarSign, Archive, Bell,Plus,TrendingUp, CalendarDays, Coins, Hash, Settings, User, BarChart3, CirclePlus, Search} from "lucide-react"
+import { Store, HandCoins, Package, Handshake, Eye, MoreHorizontal, DollarSign, Archive, Bell,Plus,TrendingUp, CalendarDays, Coins, Hash, Settings, User, BarChart3, CirclePlus} from "lucide-react"
 import MetricsCard from "../analytics/MetricsCard"
 import LowStockCard from "./lowStockCard"
 import SearchBar from "../search"
