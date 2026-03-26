@@ -1,0 +1,56 @@
+version: '3.8'
+
+services:
+  # PostgreSQL Database
+  storegrill-postgres:
+    image: postgres:15
+    container_name: storegrill-db
+    restart: always
+    environment:
+      POSTGRES_DB: storegrill
+      POSTGRES_USER: devuser
+      POSTGRES_PASSWORD: devpassword123
+      POSTGRES_INITDB_ARGS: "--encoding=UTF-8"
+    ports:
+      - "5433:5432"  # Using 5433 to avoid conflict with your existing container
+    volumes:
+      - storegrill_postgres_data:/var/lib/postgresql/data
+      - ./init-scripts:/docker-entrypoint-initdb.d
+    networks:
+      - storegrill-network
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U devuser -d storegrill"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  # pgAdmin for database management (Optional)
+  storegrill-pgadmin:
+    image: dpage/pgadmin4:latest
+    container_name: storegrill-pgadmin
+    restart: always
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@example.com
+      PGADMIN_DEFAULT_PASSWORD: admin123
+      PGADMIN_CONFIG_SERVER_MODE: 'False'
+    ports:
+      - "8081:80"  # Using 8081 in case you have something on 8080
+    volumes:
+      - storegrill_pgadmin_data:/var/lib/pgadmin
+    networks:
+      - storegrill-network
+    depends_on:
+      storegrill-postgres:
+        condition: service_healthy
+
+# Named volumes for data persistence
+volumes:
+  storegrill_postgres_data:
+    driver: local
+  storegrill_pgadmin_data:
+    driver: local
+
+# Custom network
+networks:
+  storegrill-network:
+    driver: bridge

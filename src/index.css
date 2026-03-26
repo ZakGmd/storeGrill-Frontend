@@ -1,0 +1,11 @@
+@import "tailwindcss";
+.dashboardBar::-webkit-scrollbar{
+  width: 0px ;
+  
+}
+body {
+    font-family: "Work Sans", sans-serif;
+}
+.settings::-webkit-scrollbar{
+  width: 0px ;
+}
