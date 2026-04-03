@@ -56,8 +56,8 @@ async function createServer() {
     })
 
   } else {
-    const distClient = path.resolve(__dirname, '../client')
-    const distServer = path.resolve(__dirname, '../server')
+    const distClient = path.resolve(__dirname, 'dist/client')
+    const distServer = path.resolve(__dirname, 'dist/server')
 
     console.log('Production mode — distClient:', distClient)
     console.log('Production mode — distServer:', distServer)
