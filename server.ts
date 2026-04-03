@@ -95,10 +95,10 @@ async function createServer() {
     })
   }
   console.log('PORT env var:', process.env.PORT)
-  
+
   const PORT = process.env.PORT || 5173
-  app.listen(PORT, () => {
-    console.log(`Server running on port ${PORT} — isProd: ${isProd}`)
+  app.listen(Number(PORT), '0.0.0.0', () => {
+  console.log(`Server running on port ${PORT} — isProd: ${isProd}`)
   })
 }
 
