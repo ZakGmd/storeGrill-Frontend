@@ -1,6 +1,8 @@
 import fs from 'node:fs'
 import path from 'node:path'
 import { fileURLToPath, pathToFileURL } from 'node:url'
+import { readdirSync } from 'node:fs'
+
 import express from 'express'
 import cors from 'cors'
 
@@ -63,7 +65,13 @@ async function createServer() {
     console.log('Production mode — distServer:', distServer)
 
     // Import render ONCE at startup , and if this file is missing,
-    // the server crashes loudly , that's for debuging 
+    // the server crashes loudly , that's for debuging
+
+    try{
+      console.log('dist client content : ',readdirSync(distClient))
+    }catch(e : any){
+      console.log('err: ', e.message)
+    }
     const entryServerUrl = pathToFileURL(
       path.resolve(distServer, 'entry-server.js')
     ).href
