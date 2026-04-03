@@ -7,14 +7,6 @@ export default defineConfig({
     tailwindcss(),
     react()
   ],
-   build: {
-    rollupOptions: {
-      input: {
-        client: './src/entry-client.tsx',
-        server: './src/entry-server.tsx'
-      }
-    }
-  },
   ssr: {
     external: ['react', 'react-dom']
   }
